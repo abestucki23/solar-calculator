@@ -37,7 +37,7 @@ export function CalculatorForm({ onCalculate }: CalculatorFormProps) {
       setError('');
       onCalculate(results);
     } catch (error) {
-      setError('Calculation error occurred - no matching data found for these parameters');
+      setError('Calculation error occurred');
       onCalculate(null);
     }
   };
@@ -74,16 +74,16 @@ export function CalculatorForm({ onCalculate }: CalculatorFormProps) {
           <div className="px-2">
             <input
               type="range"
-              min="250"
-              max="600"
-              step="1"
+              min="100"
+             max="400"
+             step="1"
               value={inputs.beginningMonthlyPayment}
               onChange={(e) => handleInputChange('beginningMonthlyPayment', parseFloat(e.target.value))}
               className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
             />
             <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>$250</span>
-              <span>$600</span>
+              <span>$100</span>
+             <span>$400</span>
             </div>
           </div>
         </div>
@@ -96,15 +96,15 @@ export function CalculatorForm({ onCalculate }: CalculatorFormProps) {
           <div className="px-2">
             <input
               type="range"
-              min="1500"
+              min="1100"
               max="2000"
-              step="1"
+              step="50"
               value={inputs.productionEfficiency}
               onChange={(e) => handleInputChange('productionEfficiency', parseFloat(e.target.value))}
               className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
             />
             <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>1,500</span>
+              <span>1,100</span>
               <span>2,000</span>
             </div>
           </div>

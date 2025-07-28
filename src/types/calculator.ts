@@ -8,18 +8,18 @@ export interface CalculatorData {
 }
 
 export interface CalculatorInputs {
-  consumerPricePerKwh: number;
+  beginningMonthlyPayment: number;
   escalator: string;
   productionEfficiency: number;
   systemSize: number;
-  beginningMonthlyPayment: number;
 }
 
 export interface CalculatorResults {
+  consumerPricePerKwh: number;
   totalCommission: number;
   lookupValues: {
     roundedProduction: number;
-    consumerPricePerKwh: number;
+    roundedMonthlyPayment: number;
     commissionPerWatt: number;
   };
 }

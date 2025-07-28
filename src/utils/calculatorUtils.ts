@@ -22,7 +22,7 @@ export function roundDownMonthlyPayment(payment: number): number {
 }
 
 export function calculateCommission(inputs: CalculatorInputs): CalculatorResults {
-  const { consumerPricePerKwh, escalator, productionEfficiency, systemSize } = inputs;
+  const { beginningMonthlyPayment, escalator, productionEfficiency, systemSize } = inputs;
   
   // Calculate consumer price per kWh
   const rawConsumerPricePerKwh = (beginningMonthlyPayment * 12) / (productionEfficiency * systemSize);
@@ -36,7 +36,7 @@ export function calculateCommission(inputs: CalculatorInputs): CalculatorResults
   // Find matching row in data
   const matchingRow = calculatorData.find(row => 
     row.production === roundedProduction &&
-    row.consumerPricePerKwh === consumerPricePerKwh &&
+    row.beginningMonthlyPayment === roundedMonthlyPayment &&
     row.escalator === `${escalator}%`
   );
   
@@ -48,7 +48,7 @@ export function calculateCommission(inputs: CalculatorInputs): CalculatorResults
   const totalCommission = commissionPerWatt * 1000 * systemSize;
   
   return {
-    roundedConsumerPricePerKwh,
+    consumerPricePerKwh,
     totalCommission,
     lookupValues: {
       roundedProduction,
