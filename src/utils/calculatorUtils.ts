@@ -7,19 +7,19 @@ export function roundDownProduction(production: number): number {
   return 1500;
 }
 
-export function roundDownMonthlyPayment(payment: number): number {
-  const validPayments = [325, 337.5, 350, 362.5, 375, 387.5, 400];
-  
-  // Find the largest payment that is <= the input payment
-  for (let i = validPayments.length - 1; i >= 0; i--) {
-    if (payment >= validPayments[i]) {
-      return validPayments[i];
+export function roundDownConsumerPrice(pricePerKwh: number): number {
+    const validPrices = [0.26, 0.27, 0.28, 0.29, 0.30, 0.31, 0.32];
+ 
+    // Find the largest price that is <= the input price
+    for (let i = validPrices.length - 1; i >= 0; i--) {
+      if (pricePerKwh >= validPrices[i]) {
+        return validPrices[i];
+      }
     }
+ 
+    // If price is less than the smallest valid price, return the smallest
+    return validPrices[0];
   }
-  
-  // If payment is less than the smallest valid payment, return the smallest
-  return validPayments[0];
-}
 
 export function calculateCommission(inputs: CalculatorInputs): CalculatorResults {
   const { beginningMonthlyPayment, escalator, productionEfficiency, systemSize } = inputs;
@@ -31,12 +31,12 @@ export function calculateCommission(inputs: CalculatorInputs): CalculatorResults
   
   // Round values for lookup
   const roundedProduction = roundDownProduction(productionEfficiency);
-  const roundedMonthlyPayment = roundDownMonthlyPayment(beginningMonthlyPayment);
-  
+  const roundedConsumerPrice = roundDownConsumerPrice(consumerPricePerKwh);
+ 
   // Find matching row in data
-  const matchingRow = calculatorData.find(row => 
+  const matchingRow = calculatorData.find(row =>
     row.production === roundedProduction &&
-    row.beginningMonthlyPayment === roundedMonthlyPayment &&
+    row.consumerPricePerKwh === roundedConsumerPrice &&
     row.escalator === `${escalator}%`
   );
   
@@ -52,7 +52,7 @@ export function calculateCommission(inputs: CalculatorInputs): CalculatorResults
     totalCommission,
     lookupValues: {
       roundedProduction,
-      roundedMonthlyPayment,
+      roundedConsumerPrice,
       commissionPerWatt
     }
   };
