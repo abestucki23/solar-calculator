@@ -75,7 +75,7 @@ export function CalculatorForm({ onCalculate }: CalculatorFormProps) {
             <input
               type="range"
               min="100"
-             max="400"
+             max="700"
              step="1"
               value={inputs.beginningMonthlyPayment}
               onChange={(e) => handleInputChange('beginningMonthlyPayment', parseFloat(e.target.value))}
@@ -83,7 +83,7 @@ export function CalculatorForm({ onCalculate }: CalculatorFormProps) {
             />
             <div className="flex justify-between text-xs text-gray-500 mt-1">
               <span>$100</span>
-             <span>$400</span>
+             <span>$700</span>
             </div>
           </div>
         </div>
