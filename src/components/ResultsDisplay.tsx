@@ -41,7 +41,7 @@ export function ResultsDisplay({ results }: ResultsDisplayProps) {
             <h3 className="text-lg font-semibold text-blue-800">Consumer Price per kWh</h3>
           </div>
           <p className="text-3xl font-bold text-blue-900">
-            {formatRate(results.consumerPricePerKwh)}
+            {formatRate(results.rawConsumerPricePerKwh)}
           </p>
           <p className="text-sm text-blue-600 mt-1">per kilowatt-hour</p>
         </div>
