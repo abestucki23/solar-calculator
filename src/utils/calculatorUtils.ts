@@ -49,6 +49,7 @@ export function calculateCommission(inputs: CalculatorInputs): CalculatorResults
   
   return {
     consumerPricePerKwh,
+    rawConsumerPricePerKwh,
     totalCommission,
     lookupValues: {
       roundedProduction,
